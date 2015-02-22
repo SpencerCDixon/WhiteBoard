@@ -16,7 +16,7 @@ RSpec.configure do |config|
   config.fuubar_progress_bar_options = { :format => 'Whiteboard: <%B> %p%% %a' }
 
   config.before :each do
-    OmniAuth
+    OmniAuth.config.test_mode = true
   end
 
   # included test helpers

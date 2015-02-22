@@ -12,7 +12,12 @@
 
   %body
     .nav
-      = link_to "Sign In With Google", new_session_path
+      %ul
+        - if user_signed_in?
+          %li= "Signed in as #{current_user.name}"
+          %li= link_to "Sign Out", session_path, method: :delete
+        - else
+          = link_to "Sign In With Google", new_session_path
 
     #notifications.row
       - flash.each do |type, message|
