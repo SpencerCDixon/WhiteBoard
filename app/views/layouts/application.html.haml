@@ -4,26 +4,15 @@
     %meta(charset="utf-8")
     %meta(content="width=device-width, initial-scale=1.0" name="viewport")
 
-    %title= content_for?(:title) ? yield(:title) : "Whiteboard"
+    %title= content_for?(:title) ? yield(:title) : "Whiteboard - FMS"
 
     = stylesheet_link_tag    "application"
     = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
 
   %body
-    .nav
-      %ul
-        - if user_signed_in?
-          %li= "Signed in as #{current_user.name}"
-          %li= link_to "Sign Out", session_path, method: :delete
-        - else
-          = link_to "Sign In With Google", new_session_path
-
-    #notifications.row
-      - flash.each do |type, message|
-        .alert-box(class=type data-alert)
-          = message
-          %a.close(href="#") &times;
+    = render 'layouts/nav'
+    = render 'layouts/notifications'
 
     .row
       .small-12.columns
