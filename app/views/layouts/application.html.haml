@@ -4,19 +4,15 @@
     %meta(charset="utf-8")
     %meta(content="width=device-width, initial-scale=1.0" name="viewport")
 
-    %title= content_for?(:title) ? yield(:title) : "Whiteboard"
+    %title= content_for?(:title) ? yield(:title) : "Whiteboard - FMS"
 
     = stylesheet_link_tag    "application"
     = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
 
   %body
-
-    #notifications.row
-      - flash.each do |type, message|
-        .alert-box(class=type data-alert)
-          = message
-          %a.close(href="#") &times;
+    = render 'layouts/nav'
+    = render 'layouts/notifications'
 
     .row
       .small-12.columns
