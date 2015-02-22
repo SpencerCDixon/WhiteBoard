@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :uid, presence: true, uniqueness: { scope: :provider }
+  validates :provider, presence: true
 
   def self.find_or_create_from_omniauth(auth)
     account_keys = { uid: auth["uid"], provider: auth["provider"] }
