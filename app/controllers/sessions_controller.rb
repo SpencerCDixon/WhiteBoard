@@ -9,6 +9,12 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    session[:user_id] = nil
+    flash[:info] = "Signed out successfully."
+    redirect_to root_path
+  end
+
   def failure
     redirect_to root_path, notice: "Unable to sign in."
   end
