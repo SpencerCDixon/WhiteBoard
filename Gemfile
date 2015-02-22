@@ -11,9 +11,11 @@ gem 'jquery-rails'
 
 gem 'foundation-rails'
 gem 'haml-rails', '~> 0.8'
+gem 'omniauth-google-oauth2'
 
 group :development do
   gem 'spring'
+  gem 'dotenv-rails'
 end
 
 group :test do

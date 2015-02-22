@@ -1,0 +1,5 @@
+#notifications.row
+  - flash.each do |type, message|
+    .alert-box(class=type data-alert)
+      = message
+      %a.close(href="#") &times;
