@@ -1,0 +1,26 @@
+!!! html
+%html(lang="en")
+  %head
+    %meta(charset="utf-8")
+    %meta(content="width=device-width, initial-scale=1.0" name="viewport")
+
+    %title= content_for?(:title) ? yield(:title) : "Whiteboard"
+
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "vendor/modernizr"
+    = csrf_meta_tags
+
+  %body
+
+    #notifications.row
+      - flash.each do |type, message|
+        .alert-box(class=type data-alert)
+          = message
+          %a.close(href="#") &times;
+
+    .row
+      .small-12.columns
+        #content
+          ~ yield
+
+    = javascript_include_tag "application"
