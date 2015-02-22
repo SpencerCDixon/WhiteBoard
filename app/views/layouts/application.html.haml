@@ -11,6 +11,8 @@
     = csrf_meta_tags
 
   %body
+    .nav
+      = link_to "Sign In With Google", new_session_path
 
     #notifications.row
       - flash.each do |type, message|

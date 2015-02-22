@@ -15,6 +15,10 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.fuubar_progress_bar_options = { :format => 'Whiteboard: <%B> %p%% %a' }
 
+  config.before :each do
+    OmniAuth
+  end
+
   # included test helpers
   # config.include AuthenticationHelper
 end
