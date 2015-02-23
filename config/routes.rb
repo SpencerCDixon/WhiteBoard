@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     get "failure", on: :member
   end
 
+  resource :profile, only: [:show]
+
   root "welcome#index"
 end
