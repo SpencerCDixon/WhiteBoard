@@ -8,5 +8,7 @@ Rails.application.routes.draw do
 
   resource :profile, only: [:show]
 
+  resources :families, only: [:create]
+
   root "welcome#index"
 end
