@@ -1,7 +1,4 @@
 class User < ActiveRecord::Base
-  has_many :family_memberships
-  has_many :families, through: :family_memberships
-
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :uid, presence: true, uniqueness: { scope: :provider }
