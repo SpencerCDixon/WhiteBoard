@@ -20,5 +20,5 @@ RSpec.configure do |config|
   end
 
   # included test helpers
-  # config.include AuthenticationHelper
+  config.include AuthenticationHelper
 end
