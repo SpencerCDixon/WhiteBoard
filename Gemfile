@@ -16,6 +16,7 @@ gem 'omniauth-google-oauth2'
 group :development do
   gem 'spring'
   gem 'dotenv-rails'
+  gem 'mailcatcher'
 end
 
 group :test do
@@ -29,6 +30,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'pry-rails'
   gem 'shoulda-matchers'
+  gem 'email_spec'
 end
 
 group :production do

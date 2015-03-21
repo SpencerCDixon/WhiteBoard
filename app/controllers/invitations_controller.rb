@@ -7,7 +7,7 @@ class InvitationsController < ApplicationController
     invitation = Invitation.new(invitation_params)
     invitation.sender = current_user
 
-    if invitation.save
+    if invitation.send_invite
       flash[:info] = "Successfully sent invitation"
       redirect_to invitations_path
     else

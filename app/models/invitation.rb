@@ -1,7 +1,11 @@
 class Invitation < ActiveRecord::Base
-  belongs_to :sender, class_name: "User"
+  belongs_to :sender,
+    class_name: "User"
+
   belongs_to :family
-  has_one :recipient, class_name: "User"
+
+  has_one :recipient,
+    class_name: "User"
 
   validates :name,
     presence: true
@@ -18,6 +22,14 @@ class Invitation < ActiveRecord::Base
   # validate :recipient_is_not_registered
 
   before_create :generate_token
+
+  def send_invite
+    self.sent_at = Date.today
+    if save
+      FamilyInvitation.invite(self).deliver_now
+      true
+    end
+  end
 
   private
 

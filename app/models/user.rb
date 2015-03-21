@@ -1,9 +1,13 @@
 class User < ActiveRecord::Base
   has_many :family_memberships
-  has_many :families, through: :family_memberships
+
+  has_many :families,
+    through: :family_memberships
+
   has_many :sent_invitations,
     class_name: "Invitation",
     foreign_key: "sender_id"
+
   belongs_to :invitation
 
   validates :name, presence: true

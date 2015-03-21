@@ -46,5 +46,28 @@ feature 'send family invitations' do
 
       expect(page).to have_content('Something went wrong. Please fix errors')
     end
+
+    scenario 'sends email invitation' do
+      ActionMailer::Base.deliveries = []
+
+      prev_count = Invitation.count
+      family = FactoryGirl.create(:family_membership, user: user).family
+      visit profile_path
+
+      within '#new_invitation' do
+        fill_in 'Name', with: 'Emily Wadsworth'
+        fill_in 'Email', with: 'e.wadsworth@gmail.com'
+        select family.name, from: 'Family'
+        click_on 'Send Invite'
+      end
+
+      expect(page).to have_content('Successfully sent invitation')
+      expect(Invitation.count).to eq(prev_count + 1)
+      expect(ActionMailer::Base.deliveries.size).to eql(1)
+
+      last_email = ActionMailer::Base.deliveries.last
+      expect(last_email).to have_subject('WhiteBoard Family Invitation')
+      expect(last_email).to deliver_to('e.wadsworth@gmail.com')
+    end
   end
 end
