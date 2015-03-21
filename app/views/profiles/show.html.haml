@@ -1,9 +1,28 @@
 %h1 Welcome back #{current_user.name}
 = image_tag(current_user.image)
 
+%h2 Your Families
+
+%ul
+- @families.each do |family|
+  %li= family.name
+
 = form_for @family do |f|
   = f.label :name
   = f.text_field :name
 
   = f.submit "Create Family", class: "button tiny success"
 
+%h2 Invite Family Members
+
+= form_for @invitation do |f|
+  = f.label :name
+  = f.text_field :name
+
+  = f.label :email
+  = f.text_field :email
+
+  = f.label :family_id, 'Family'
+  = f.select :family_id, current_user.families.map {|f| [f.name, f.id] }, as: :family_id
+
+  = f.submit "Send Invite", class: "button tiny success"
