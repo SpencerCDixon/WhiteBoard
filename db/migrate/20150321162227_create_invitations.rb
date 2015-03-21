@@ -1,7 +1,7 @@
 class CreateInvitations < ActiveRecord::Migration
   def change
     create_table :invitations do |t|
-      t.uuid :invite_token, null: false
+      t.string :invite_token
       t.datetime :created_at
       t.datetime :sent_at
       t.datetime :accepted_at

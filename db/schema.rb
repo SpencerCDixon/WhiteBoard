@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20150321162227) do
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.uuid     "invite_token",                     null: false
+    t.string   "invite_token"
     t.datetime "created_at"
     t.datetime "sent_at"
     t.datetime "accepted_at"

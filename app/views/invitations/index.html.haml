@@ -1,0 +1,9 @@
+%h2 All Invitations
+
+%ul.all_invites
+  - @invitations.each do |recipient|
+    %li
+      = recipient.name + ' '
+      = recipient.email + ' '
+      = recipient.status.capitalize + ' '
+
