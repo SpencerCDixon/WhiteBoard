@@ -1,9 +1,14 @@
 %h2 All Invitations
 
-%ul.all_invites
-  - @invitations.each do |recipient|
-    %li
-      = recipient.name + ' '
-      = recipient.email + ' '
-      = recipient.status.capitalize + ' '
+%table.all_invites
+  %tr
+    %th Name
+    %th Email
+    %th Status
+    %th Add To Family
 
+  - @invitations.each do |recipient|
+    %tr
+      %td= recipient.name + ' '
+      %td= recipient.email + ' '
+      %td= recipient.status.capitalize + ' '

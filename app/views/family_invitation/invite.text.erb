@@ -1,0 +1,14 @@
+WhiteBoard Family Invitation
+
+<p>Hello <%= @family_invitation.name.capitalize %>,
+
+<p>
+You are receiving this email because <%= @family_invitation.sender.full_name %>
+  wants you to join their family on White Board!
+</p>
+
+<p>
+  In order to become a member of the <%= @family_invitation.family.name %> family,
+  please first create an account on WhiteBoard by <%= link_to "going here.", new_session_url %>
+</p>
+

@@ -10,10 +10,19 @@ class User < ActiveRecord::Base
 
   belongs_to :invitation
 
-  validates :name, presence: true
-  validates :email, presence: true, uniqueness: true
-  validates :uid, presence: true, uniqueness: { scope: :provider }
-  validates :provider, presence: true
+  validates :name,
+    presence: true
+
+  validates :email,
+    presence: true,
+    uniqueness: true
+
+  validates :uid,
+    presence: true,
+    uniqueness: { scope: :provider }
+
+  validates :provider,
+    presence: true
 
   def self.find_or_create_from_omniauth(auth)
     account_keys = { uid: auth["uid"], provider: auth["provider"] }
@@ -25,5 +34,9 @@ class User < ActiveRecord::Base
       user.last_name = auth["info"]["last_name"]
       user.image = auth["info"]["image"] # or some default image here
     end
+  end
+
+  def full_name
+    "#{first_name.capitalize} #{last_name.capitalize}"
   end
 end

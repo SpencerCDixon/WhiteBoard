@@ -5,6 +5,7 @@ class FamilyInvitation < ApplicationMailer
     @family_invitation = family_invitation
 
     mail to: @family_invitation.email,
-      subject: 'WhiteBoard Family Invitation'
+      subject: 'WhiteBoard Family Invitation',
+      content_type: "text/html"
   end
 end
