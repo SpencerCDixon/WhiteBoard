@@ -1,0 +1,11 @@
+%h1 Account Settings
+
+= link_to 'Invitations', invitations_path, class: 'button tiny alert'
+
+%h2 Join Family
+= form_for @user do |f|
+  = f.label :invite_token
+  = f.text_field :invite_token
+
+  = f.submit 'Join Family', class: 'button tiny success'
+

@@ -7,7 +7,8 @@
   %section.top-bar-section
     %ul.right
       - if user_signed_in?
-        %li= link_to "Signed in as #{current_user.name}"
+        %li= link_to "Signed in as #{current_user.name}", profile_path
         %li= link_to "Sign Out", session_path, method: :delete
+        %li= link_to "Account Settings", edit_user_path(current_user)
       - else
         %li= link_to "Sign In With Google", new_session_path
