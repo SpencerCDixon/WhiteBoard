@@ -19,6 +19,10 @@ RSpec.configure do |config|
     OmniAuth.config.test_mode = true
   end
 
+  # used for testing mailers
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
+
   # included test helpers
   config.include AuthenticationHelper
 end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "welcome#index"
+
   get "auth/:provider/callback", to: "sessions#create"
   get "auth/failure", to: "sessions#failure"
 
@@ -7,8 +9,8 @@ Rails.application.routes.draw do
   end
 
   resource :profile, only: [:show]
-
   resources :families, only: [:create]
-
-  root "welcome#index"
+  resources :invitations, only: [:new, :create, :index]
+  resources :family_memberships, only: [:create]
+  resources :users, only: [:update, :edit]
 end

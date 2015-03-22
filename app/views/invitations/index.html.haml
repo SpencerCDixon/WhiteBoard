@@ -1,0 +1,21 @@
+%h2 All Invitations
+
+%table.all_invites
+  %tr
+    %th Name
+    %th Email
+    %th Status
+    %th Add To Family
+
+  - @invitations.each do |recipient|
+    %tr
+      %td= recipient.name + ' '
+      %td= recipient.email + ' '
+      %td= recipient.status.capitalize + ' '
+      - if recipient.check_for_user
+        %td= button_to 'Add To Family',
+          family_memberships_path(family_id: recipient.family_id,
+            user_id: recipient.check_for_user.id, invite_id: recipient.id),
+            class: 'button tiny alert'
+      - else
+        %td Waiting For Response
