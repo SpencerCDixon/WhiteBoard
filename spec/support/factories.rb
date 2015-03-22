@@ -19,6 +19,8 @@ FactoryGirl.define do
   end
 
   factory :invitation, aliases: [:family_invitation] do
+    family_id 1
+    sender_id 1
     status "pending"
     sequence(:email){ |n| "e.wadsworth#{n}@gmail.com" }
     sequence(:name) { |n| "Emily Wadsworth #{n}" }

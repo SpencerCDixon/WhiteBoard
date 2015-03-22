@@ -43,4 +43,13 @@ describe User do
       expect(User.count).to eq(1)
     end
   end
+
+  describe "#full_name" do
+    it "creates capitalized full name" do
+      user = FactoryGirl.create(:user)
+      first = user.first_name
+      last = user.last_name
+      expect(user.full_name).to eq "#{first.capitalize} #{last.capitalize}"
+    end
+  end
 end
