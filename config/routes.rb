@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :families, only: [:create]
   resources :invitations, only: [:new, :create, :index]
   resources :family_memberships, only: [:create]
+  resources :users, only: [:update, :edit]
 end

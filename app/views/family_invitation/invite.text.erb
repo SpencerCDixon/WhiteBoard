@@ -1,5 +1,3 @@
-WhiteBoard Family Invitation
-
 <p>Hello <%= @family_invitation.name.capitalize %>,
 
 <p>
@@ -10,5 +8,17 @@ You are receiving this email because <%= @family_invitation.sender.full_name %>
 <p>
   In order to become a member of the <%= @family_invitation.family.name %> family,
   please first create an account on WhiteBoard by <%= link_to "going here.", new_session_url %>
+</p>
+
+<p>
+  Once you have created an account and signed in, go to your account settings
+  and paste in this token in the 'Join Family' form.<br />
+
+  <strong>Token:</strong><pre> <%= @family_invitation.invite_token %> </pre>
+</p>
+
+<p>
+  Have fun with using White Board!  We hope it makes your life easier
+  and creates a better experience for you and the whole family.
 </p>
 

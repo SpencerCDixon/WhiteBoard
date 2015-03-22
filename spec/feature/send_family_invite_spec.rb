@@ -79,12 +79,28 @@ feature 'send family invitations' do
       click_on 'Add To Family'
 
       expect(page).to have_content('Successfully added to family.')
+      expect(page).to have_content('Accepted')
 
       visit profile_path
 
       within '.family-members' do
         expect(page).to have_content(child.name)
       end
+    end
+
+    scenario 'recipient updates their invite status' do
+      family = FactoryGirl.create(:family_membership, user: user).family
+      invitation = FactoryGirl.create(:invitation, sender_id: user.id, family_id: family.id)
+      child = FactoryGirl.create(:user, invite_token: invitation.invite_token)
+
+      click_on 'Sign Out'
+      sign_in_as child
+      click_on 'Account Settings'
+
+      fill_in 'Invite token', with: invitation.invite_token
+      click_on 'Join Family'
+
+      expect(page).to have_content('Success.  Waiting for confirmation')
     end
   end
 end
