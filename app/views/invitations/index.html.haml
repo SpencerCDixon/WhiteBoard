@@ -12,3 +12,10 @@
       %td= recipient.name + ' '
       %td= recipient.email + ' '
       %td= recipient.status.capitalize + ' '
+      - if recipient.check_for_user
+        %td= button_to 'Add To Family',
+          family_memberships_path(family_id: recipient.family_id,
+            user_id: recipient.check_for_user.id),
+            class: 'button tiny alert'
+      - else
+        %td Waiting For Response

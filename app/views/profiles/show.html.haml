@@ -13,6 +13,13 @@
 
   = f.submit "Create Family", class: "button tiny success"
 
+%h2 Your Family Members
+.family-members
+  %ul
+  - @families.each do |family|
+    - family.users.each do |user|
+      %li= user.name
+
 - if @families.any?
   %h2 Invite Family Members
   = form_for @invitation do |f|

@@ -32,11 +32,8 @@ class Invitation < ActiveRecord::Base
   end
 
   def check_for_user
-    user = User.find_by_email(email)
-    if user
-      return user
-    end
-    false
+    user = User.find_by_invite_token(invite_token)
+    user ? user : false
   end
 
   private

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Invitation do
   describe "#send_invite" do
-    it 'sends an email when parking is successful' do
+    it 'sends an email when invite is successful' do
       prev_mail_count = ActionMailer::Base.deliveries.count
       user = FactoryGirl.create(:user)
       family = FactoryGirl.create(:family_membership, user: user).family
@@ -17,9 +17,9 @@ describe Invitation do
 
   describe "#user_in_system?" do
     it 'returns user successfully' do
-      user = FactoryGirl.create(:user, email: "spencercdixon@gmail.com")
       family = FactoryGirl.create(:family)
-      invitation = FactoryGirl.create(:invitation, email: user.email, family_id: family.id, sender_id: 1)
+      invitation = FactoryGirl.create(:invitation, email: "spencercdixon@gmail.com", family_id: family.id, sender_id: 1)
+      user = FactoryGirl.create(:user, email: "spencercdixon@gmail.com", invite_token: invitation.invite_token)
       expect(invitation.check_for_user).to eq user
     end
 

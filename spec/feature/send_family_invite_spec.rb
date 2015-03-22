@@ -69,5 +69,22 @@ feature 'send family invitations' do
       expect(last_email).to have_subject('WhiteBoard Family Invitation')
       expect(last_email).to deliver_to('e.wadsworth@gmail.com')
     end
+
+    scenario 'sender adds new member to the family after confirmation' do
+      family = FactoryGirl.create(:family_membership, user: user).family
+      invitation = FactoryGirl.create(:invitation, sender_id: user.id, family_id: family.id)
+      child = FactoryGirl.create(:user, invite_token: invitation.invite_token)
+
+      visit invitations_path
+      click_on 'Add To Family'
+
+      expect(page).to have_content('Successfully added to family.')
+
+      visit profile_path
+
+      within '.family-members' do
+        expect(page).to have_content(child.name)
+      end
+    end
   end
 end
