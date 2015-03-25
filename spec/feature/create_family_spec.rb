@@ -12,9 +12,6 @@ feature 'families' do
       click_on 'Create Family'
 
       expect(page).to have_content('Successfully created family.')
-      # this logic should go in model tests
-      # expect(FamilyMembership.count).to eq 1
-      # expect(Family.count).to eq 1
     end
   end
 end

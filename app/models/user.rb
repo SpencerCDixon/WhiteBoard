@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :family_memberships
+  has_one :family_membership
 
   has_many :families,
-    through: :family_memberships
+    through: :family_membership
 
   has_many :sent_invitations,
     class_name: "Invitation",
@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
       user.last_name = auth["info"]["last_name"]
       user.image = auth["info"]["image"] # or some default image here
     end
+  end
+
+  def family
+    families.first
   end
 
   def full_name

@@ -3,9 +3,15 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new
   end
 
+  def index
+    @invitations = current_user.sent_invitations
+  end
+
   def create
     invitation = Invitation.new(invitation_params)
+    binding.pry
     invitation.sender = current_user
+    invitation.family = current_user.family
 
     if invitation.send_invite
       flash[:info] = "Successfully sent invitation"
@@ -16,13 +22,9 @@ class InvitationsController < ApplicationController
     end
   end
 
-  def index
-    @invitations = current_user.sent_invitations
-  end
-
   private
 
   def invitation_params
-    params.require(:invitation).permit(:name, :email, :family_id)
+    params.require(:invitation).permit(:name, :email)
   end
 end

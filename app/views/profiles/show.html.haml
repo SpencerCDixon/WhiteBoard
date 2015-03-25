@@ -1,26 +1,26 @@
 %h1 Welcome back #{current_user.name}
 = image_tag(current_user.image)
 
-%h2 Your Families
+%h2 Your Family
 
-%ul
-- @families.each do |family|
-  %li= family.name
+- if @current_family.present?
+  %ul
+    %li= @current_family.name
 
-= form_for @family do |f|
+= form_for @new_family do |f|
   = f.label :name
   = f.text_field :name
 
   = f.submit "Create Family", class: "button tiny success"
 
-%h2 Your Family Members
-.family-members
-  %ul
-  - @families.each do |family|
-    - family.users.each do |user|
-      %li= user.name
+- if @current_family.present?
+  %h2 Your Family Members
+  .family-members
+    %ul
+      - @current_family.users.each do |user|
+        %li= user.name
 
-- if @families.any?
+- if @current_family.present?
   %h2 Invite Family Members
   = form_for @invitation do |f|
     = f.label :name
@@ -28,8 +28,5 @@
 
     = f.label :email
     = f.text_field :email
-
-    = f.label :family_id, 'Family'
-    = f.select :family_id, current_user.families.map {|f| [f.name, f.id] }, as: :family_id
 
     = f.submit "Send Invite", class: "button tiny success"
