@@ -23,7 +23,6 @@ feature 'send family invitations' do
       within '#new_invitation' do
         fill_in 'Name', with: 'Emily Wadsworth'
         fill_in 'Email', with: 'e.wadsworth@gmail.com'
-        select family.name, from: 'Family'
         click_on 'Send Invite'
       end
 
@@ -57,7 +56,6 @@ feature 'send family invitations' do
       within '#new_invitation' do
         fill_in 'Name', with: 'Emily Wadsworth'
         fill_in 'Email', with: 'e.wadsworth@gmail.com'
-        select family.name, from: 'Family'
         click_on 'Send Invite'
       end
 

@@ -10,13 +10,14 @@ class FamilyBuilder
       false
     else
       create_family_with_membership
+      true
     end
   end
 
   private
 
   def user_has_family?
-    user.family
+    user.families.any? ? true : false
   end
 
   def create_family_with_membership

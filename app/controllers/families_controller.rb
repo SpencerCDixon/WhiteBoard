@@ -1,5 +1,4 @@
 class FamiliesController < ApplicationController
-
   def create
     if FamilyBuilder.new(family_params, current_user).build
       flash[:info] = "Successfully created family."

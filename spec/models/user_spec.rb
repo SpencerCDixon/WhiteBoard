@@ -52,4 +52,14 @@ describe User do
       expect(user.full_name).to eq "#{first.capitalize} #{last.capitalize}"
     end
   end
+
+  describe "#family" do
+    it "returns the first family that the user is associated with" do
+      membership = FactoryGirl.create(:family_membership)
+      user = membership.user
+      family = membership.family
+
+      expect(user.family).to eq family
+    end
+  end
 end

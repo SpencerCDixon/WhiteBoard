@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_one :family_membership
 
-  has_one :family,
+  has_many :families,
     through: :family_membership
 
   has_many :sent_invitations,
@@ -9,9 +9,6 @@ class User < ActiveRecord::Base
     foreign_key: "sender_id"
 
   belongs_to :invitation
-
-  validates :family,
-    presence: true
 
   validates :name,
     presence: true
@@ -37,6 +34,10 @@ class User < ActiveRecord::Base
       user.last_name = auth["info"]["last_name"]
       user.image = auth["info"]["image"] # or some default image here
     end
+  end
+
+  def family
+    families.first
   end
 
   def full_name
