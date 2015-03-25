@@ -6,8 +6,10 @@ class InvitationsController < ApplicationController
   def create
     invitation = Invitation.new(invitation_params)
     invitation.sender = current_user
+    invitation.family = current_user.family
 
     if invitation.send_invite
+      binding.pry
       flash[:info] = "Successfully sent invitation"
       redirect_to invitations_path
     else
